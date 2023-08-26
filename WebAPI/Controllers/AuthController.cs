@@ -34,11 +34,18 @@ namespace WebAPI.Controllers
         
         [HttpPost]
         [Route("[action]")]
-        public async Task<ActionResult<LoginResponseDTO>> Login(LoginRequestDTO credentials)
+        public async Task<ActionResult<LoginResponseDTO>> Login(LoginRequestViewModel model)
         {
             try
             {
-                LoginResponseDTO signInResult = await _authRepository.SignIn(credentials, true);
+                var requestDto = new LoginRequestDTO()
+                {
+                    ClientId = model.ClientId,
+                    ClientSecret = model.ClientSecret,
+                    Email = model.Email,
+                    Password = model.Password
+                };
+                LoginResponseDTO signInResult = await _authRepository.SignIn(requestDto, true);
                 return Ok(signInResult);
             }
             catch (Exception ex)
