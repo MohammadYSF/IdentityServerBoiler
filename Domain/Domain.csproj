@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <RootNamespace>Domain</RootNamespace>
+        <AssemblyName>Domain</AssemblyName>
+    </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.2" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Common\" />
+	</ItemGroup>
+
+</Project>

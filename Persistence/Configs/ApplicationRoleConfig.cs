@@ -1,0 +1,31 @@
+﻿using Domain.Entities;
+using Domain.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
+
+namespace Persistence.Configs
+{
+    public class ApplicationRoleConfig : IEntityTypeConfiguration<ApplicationRole>
+    {
+        public void Configure(EntityTypeBuilder<ApplicationRole> builder)
+        {
+            builder.HasData(
+            new ApplicationRole
+            {
+                Id = (int)Role.User,
+                Name = Enum.GetName(typeof(Role), Role.User),
+                NormalizedName = Enum.GetName(typeof(Role), Role.User).ToUpper()
+            },           
+            new ApplicationRole
+            {
+                Id = (int)Role.Admin,
+                Name = Enum.GetName(typeof(Role), Role.Admin),
+                NormalizedName = Enum.GetName(typeof(Role), Role.Admin).ToUpper()
+
+            }
+            );
+        }
+    }
+}
+  
