@@ -1,10 +1,14 @@
 ﻿using Application.Features.UserFeatures.RegisterUser;
 using Application.Repositories;
 using Domain.ViewModels;
+using IdentityServer4.Extensions;
+using IdentityServer4.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace WebAPI.Controllers
 {
@@ -19,8 +23,8 @@ namespace WebAPI.Controllers
             _authRepository = authRepository;
             _mediator = mediator;
         }
-        [Authorize(Roles = "Admin")]
-        //[Authorize(Policy = "SayHi")] TODO : policies do not apply
+        //[Authorize(Roles = "Admin")]
+        [Authorize(Policy = "SayHi")] 
         [Route("[action]")]
         [HttpGet]
         public ActionResult<string> SayHi()
@@ -29,9 +33,21 @@ namespace WebAPI.Controllers
             return Ok(x);
         }
 
+
         //TO DO : token revocation
-        
-        
+        [HttpGet]
+        [Authorize]
+        [Route("[action]")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            
+            return Ok();
+        }
+        //for getting refresh token  , use /connect/token endpoint
+
+        // for token revocation , use /connect/revo
+
         [HttpPost]
         [Route("[action]")]
         public async Task<ActionResult<LoginResponseDTO>> Login(LoginRequestViewModel model)

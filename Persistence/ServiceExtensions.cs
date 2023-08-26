@@ -141,7 +141,7 @@ public static class ServiceExtensions
 
             options.AddPolicy("SayHi", policy =>
                 {
-                    policy.RequireClaim("say_hi");
+                    policy.RequireClaim("permission","say_hi");
                 }
             );
         });
