@@ -1,14 +1,12 @@
 ﻿using Application.Features.UserFeatures.RegisterUser;
 using Application.Repositories;
 using Domain.ViewModels;
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
+using Duende.IdentityServer.Extensions;
+using Duende.IdentityServer.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace WebAPI.Controllers
 {

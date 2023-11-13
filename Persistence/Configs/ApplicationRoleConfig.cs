@@ -13,13 +13,13 @@ namespace Persistence.Configs
             builder.HasData(
             new ApplicationRole
             {
-                Id = (int)Role.User,
+                Id = Guid.NewGuid(),
                 Name = Enum.GetName(typeof(Role), Role.User),
                 NormalizedName = Enum.GetName(typeof(Role), Role.User).ToUpper()
             },           
             new ApplicationRole
             {
-                Id = (int)Role.Admin,
+                Id = Guid.NewGuid(),
                 Name = Enum.GetName(typeof(Role), Role.Admin),
                 NormalizedName = Enum.GetName(typeof(Role), Role.Admin).ToUpper()
 

@@ -3,20 +3,10 @@ using Application.Repositories;
 using Domain.Entities;
 using Domain.Enums;
 using Domain.ViewModels;
-using IdentityServer4.EntityFramework.Entities;
-using IdentityServer4.Events;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
-using System.Text.Json;
-using static IdentityModel.OidcConstants;
 
 namespace Persistence.Repositories
 {

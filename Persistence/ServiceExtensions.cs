@@ -4,19 +4,13 @@ using Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.EntityFramework.Storage;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.Models;
-using IdentityServer4.EntityFramework.Mappers;
-using IdentityServer4.EntityFramework.Extensions;
-using System.Linq.Expressions;
+using Duende.IdentityServer.EntityFramework.Storage;
+using Duende.IdentityServer.Models;
 using IdentityModel;
-using System.Security.Claims;
 
 namespace Persistence;
 
@@ -30,6 +24,9 @@ public static class ServiceExtensions
         opt.UseNpgsql(connectionString,
         b => b.MigrationsAssembly(assembly)));
         services.AddOperationalDbContext(options =>
+        {
+            options.ConfigureDbContext = db => db.UseNpgsql(connectionString, b => b.MigrationsAssembly(assembly));
+        }).AddConfigurationDbContext(options =>
         {
             options.ConfigureDbContext = db => db.UseNpgsql(connectionString, b => b.MigrationsAssembly(assembly));
         });
@@ -148,6 +145,7 @@ public static class ServiceExtensions
         #endregion
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAuthRepository, AuthRepository>();
+        services.AddHttpClient();
 
     }
 }

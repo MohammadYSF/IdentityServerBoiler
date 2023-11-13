@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Context;
 
-public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
+public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 {
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
     {
